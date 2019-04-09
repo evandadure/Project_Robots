@@ -21,8 +21,8 @@ public class Source11 {
 		this.mesListeners.remove(eListener);
 	}
 	
-	public void generateEvent1(String direction) {
-		MoveEvent e = new MoveEvent(direction);
+	public void generateEvent1(Robot robot, String direction) {
+		MoveEvent e = new MoveEvent(robot, direction);
 		for(MoveListener eListener:mesListeners) {
 			eListener.onMoveEvent(e);
 		}

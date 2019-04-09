@@ -1,6 +1,7 @@
 package robots;
 
 public class Robot {
+	private int idRobot;
 	private int posX;
 	private int posY;
 	
@@ -10,6 +11,10 @@ public class Robot {
 	
 	public int getPosY() {
 		return posY;
+	}
+
+	public int getIdRobot() {
+		return idRobot;
 	}
 	
 	public void goRight() {
@@ -28,7 +33,9 @@ public class Robot {
 		this.posY-=1;
 	}
 	
-	public Robot(int X, int Y) {
+
+	public Robot(int X, int Y, int idRobot) {
+		this.idRobot = idRobot;
 		this.posX = X;
 		this.posY = Y;
 	}
