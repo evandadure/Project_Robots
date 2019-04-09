@@ -3,8 +3,11 @@ package robots;
 public class Main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("Hello");
+		Source11 source = new Source11();
+		source.addEvent1Listener(new FlotteListener());
+		source.addEvent1Listener(new FlotteListener());
+		source.addEvent1Listener(new FlotteListener());
+		source.generateEvent1("droite");
 	}
 
 }
