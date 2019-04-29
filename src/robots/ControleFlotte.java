@@ -2,7 +2,7 @@ package robots;
 
 import java.util.ArrayList;
 
-public class Source11 {
+public class ControleFlotte {
 	private ArrayList<MoveListener> mesListeners = new ArrayList<MoveListener>();
 
 	public ArrayList<MoveListener> getMesListeners() {

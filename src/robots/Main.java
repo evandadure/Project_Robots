@@ -13,7 +13,7 @@ public class Main {
 			System.out.println(r.getIdRobot() +" " +r.getPosX() + " " + r.getPosY());
 		}
 		
-		Source11 source = new Source11();
+		ControleFlotte source = new ControleFlotte();
 		source.addMoveListener(myFlotte);
 
 		source.generateMoveEvent(robot1, "droite");
