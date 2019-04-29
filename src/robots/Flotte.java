@@ -30,23 +30,33 @@ public class Flotte implements MoveListener {
 		this.field[posX][posY] = r;
 	}
 	
+	private boolean isPositionFree(int posX,int posY) {
+		return this.field[posX][posY] == null;
+	}
+	
+	private boolean isInField(int posX,int posY) {
+		return posX>=0 && posX<this.nbCol && posY>=0 && posY<nbLig;
+	}
+	
 	private void moveRobot(Robot r, int newPosX, int newPosY) {
 		// checks if the new position is empty (or if there is anything on the way to this position)
-		if(this.field[newPosX][newPosY] == null) {
-			this.field[newPosX][newPosY] = r;
-			this.field[r.getPosX()][r.getPosY()] = null;
-			r.setPosX(newPosX);
-			r.setPosY(newPosY);
+		if(isInField(newPosX, newPosY)){
+			if(isPositionFree(newPosX,newPosY)){
+				this.field[newPosX][newPosY] = r;
+				this.field[r.getPosX()][r.getPosY()] = null;
+				r.setPosX(newPosX);
+				r.setPosY(newPosY);
+			}
 		}
 	}
 	
 	public void onMoveEvent(MoveEvent e) {
 		Robot r = e.getRobot();
 		int coefVitesse = r.getCoefVitesse();
-		int posX = r.getPosX();
-		int posY = r.getPosY();
 		// bouge dans une direction un nombre de fois égal à la vitesse (vitesse de 5 = 5 mouvements)
 		for (int i = 0; i < coefVitesse; i++) {
+			int posX = r.getPosX();
+			int posY = r.getPosY();
 			if(e.getDirection() == "droite")
 				this.moveRobot(r, posX+1, posY);
 			if(e.getDirection() == "gauche")
