@@ -14,12 +14,12 @@ public class Main {
 		}
 		
 		Source11 source = new Source11();
-		source.addEvent1Listener(new FlotteListener());
+		source.addMoveListener(myFlotte);
 
-		source.generateEvent1(robot1, "droite");
-		source.generateEvent1(robot1, "droite");
-		source.generateEvent1(robot2, "bas");
-		source.generateEvent1(robot2, "gauche");
+		source.generateMoveEvent(robot1, "droite");
+		source.generateMoveEvent(robot1, "droite");
+		source.generateMoveEvent(robot2, "bas");
+		source.generateMoveEvent(robot2, "gauche");
 		
 		for (Robot r : myFlotte.getRobotsList()) {
 			System.out.println(r.getIdRobot() +" " +r.getPosX() + " " + r.getPosY());

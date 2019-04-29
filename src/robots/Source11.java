@@ -13,16 +13,16 @@ public class Source11 {
 		this.mesListeners = mesListeners;
 	}
 	
-	public void addEvent1Listener(MoveListener eListener) {
+	public void addMoveListener(MoveListener eListener) {
 		this.mesListeners.add(eListener);
 	}
 	
-	public void removeEvent1Listener(MoveListener eListener) {
+	public void removeMoveListener(MoveListener eListener) {
 		this.mesListeners.remove(eListener);
 	}
 	
-	public void generateEvent1(Robot robot, String direction) {
-		MoveEvent e = new MoveEvent(robot, direction);
+	public void generateMoveEvent(Robot robot, String direction) {
+		MoveEvent e = new MoveEvent(this, robot, direction);
 		for(MoveListener eListener:mesListeners) {
 			eListener.onMoveEvent(e);
 		}

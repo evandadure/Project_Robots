@@ -17,7 +17,7 @@ public class Flotte implements MoveListener {
 		this.robotsList.add(r);
 	}
 	public void onMoveEvent(MoveEvent e) {
-		Robot r = (Robot)e.getSource();
+		Robot r = e.getRobot();
 		if(e.getDirection() == "droite")
 			r.goRight();
 		if(e.getDirection() == "gauche")
