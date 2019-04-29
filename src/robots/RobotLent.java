@@ -1,17 +1,11 @@
 package robots;
 
 public class RobotLent extends Robot {
-
-	private final int COEFVITESSE = 1;
 	
-	public RobotLent(int X, int Y, int idRobot) {
-		super(X, Y, idRobot);
+	public RobotLent(int idRobot) {
+		super(idRobot, 1);
 		// TODO Auto-generated constructor stub
 	}
 
-	public int getCOEFVITESSE() {
-		return COEFVITESSE;
-	}
-	
 	
 }
