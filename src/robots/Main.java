@@ -13,25 +13,18 @@ public class Main {
 			System.out.println(r.getIdRobot() +" " +r.getPosX() + " " + r.getPosY());
 		}
 		
-		ControleFlotte source = new ControleFlotte();
-		source.addMoveListener(myFlotte);
-
-		source.generateMoveEvent(robot2, "gauche");
-		source.generateMoveEvent(robot1, "haut");
+		ControleRobots source = new ControleRobots();
 		
-		System.out.println("robot 2"+robot2.getIdRobot() +" " +robot2.getPosX() + " " + robot2.getPosY());
+		source.addMoveListener(robot1);
+		source.generateMoveEvent("gauche");
 		
+		source.removeMoveListener(robot1);
+		source.addMoveListener(robot2);
+		source.generateMoveEvent("haut");
 		
-		source.generateMoveEvent(robot2, "gauche");
-		source.generateMoveEvent(robot2, "gauche");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot1, "haut");
-		source.generateMoveEvent(robot2, "droite");
-		source.generateMoveEvent(robot2, "haut");
+		source.addMoveListener(robot1);
+		source.generateMoveEvent("gauche");
+		source.generateMoveEvent("droite");
 		
 		for (Robot r : myFlotte.getRobotsList()) {
 			System.out.println(r.getIdRobot() +" " +r.getPosX() + " " + r.getPosY());
