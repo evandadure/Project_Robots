@@ -19,6 +19,10 @@ public class ControleRobots {
 	private ArrayList<EnnemyListener> myEnnemyListeners = new ArrayList<EnnemyListener>();
 	private Field currentField;
 	
+	public Field getCurrentField(){
+		return this.currentField;
+	}
+	
 	public void setMyAllyListeners(ArrayList<AllyListener> myAllyListeners) {
 		this.myAllyListeners = myAllyListeners;
 	}
