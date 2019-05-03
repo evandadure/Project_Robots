@@ -1,4 +1,4 @@
-package robots;
+package robots.Events;
 
 import java.util.EventObject;
 

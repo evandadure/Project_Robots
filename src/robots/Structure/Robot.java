@@ -1,6 +1,14 @@
-package robots;
+package robots.Structure;
 
 import java.util.ArrayList;
+
+import robots.ControleRobots;
+import robots.Events.AttackEvent;
+import robots.Events.HealEvent;
+import robots.Events.MoveEvent;
+import robots.Listeners.AllyListener;
+import robots.Listeners.EnnemyListener;
+import robots.Listeners.MoveListener;
 
 public abstract class Robot implements MoveListener, AllyListener,EnnemyListener {
 	private int idRobot;

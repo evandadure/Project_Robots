@@ -1,6 +1,7 @@
 package robots;
 
-import java.util.Iterator;
+import robots.Structure.Field;
+import robots.Structure.Robot;
 
 public class Main {
 

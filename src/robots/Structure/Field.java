@@ -1,4 +1,4 @@
-package robots;
+package robots.Structure;
 
 import java.util.ArrayList;
 import java.lang.Math.*;

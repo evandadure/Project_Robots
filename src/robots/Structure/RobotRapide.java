@@ -1,4 +1,4 @@
-package robots;
+package robots.Structure;
 
 public class RobotRapide extends Robot {
 	

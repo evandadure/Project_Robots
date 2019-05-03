@@ -2,6 +2,17 @@ package robots;
 
 import java.util.ArrayList;
 
+import robots.Events.AttackEvent;
+import robots.Events.HealEvent;
+import robots.Events.MoveEvent;
+import robots.Listeners.AllyListener;
+import robots.Listeners.EnnemyListener;
+import robots.Listeners.MoveListener;
+import robots.Structure.Field;
+import robots.Structure.Robot;
+import robots.Structure.RobotLent;
+import robots.Structure.RobotRapide;
+
 public class ControleRobots {
 	private ArrayList<MoveListener> myMoveListeners = new ArrayList<MoveListener>();
 	private ArrayList<AllyListener> myAllyListeners = new ArrayList<AllyListener>();

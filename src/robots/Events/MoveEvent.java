@@ -1,6 +1,8 @@
-package robots;
+package robots.Events;
 
 import java.util.EventObject;
+
+import robots.Structure.Field;
 
 public class MoveEvent extends EventObject{
 	private String direction;

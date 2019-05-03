@@ -1,4 +1,4 @@
-package robots;
+package robots.Structure;
 
 public class RobotHealer extends Robot {
 	
