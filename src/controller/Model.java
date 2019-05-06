@@ -13,11 +13,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SplitPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import robots.ControleRobots;
+import robots.Structure.Field;
 import robots.Structure.Robot;
 
 public class Model {
@@ -39,7 +43,43 @@ public class Model {
 	@FXML
 	private ListView<String> lv_robots;
 	
-	private String idRobot;
+	@FXML
+	private SplitPane sp;
+	
+	private Field field;
+	
+	private ControleRobots ctrlRobots;
+	
+	public Model(){
+		ctrlRobots = new ControleRobots(new Field(10,10));
+		field = ctrlRobots.getCurrentField();
+	}
+	
+	public GridPane getGridField() {
+		return gridField;
+	}
+	
+	public ListView getListView() {
+		return lv_robots;
+	}
+
+
+	public void setField(Field field) {
+		this.field = field;
+	}
+	
+	public Field getField() {
+		return this.field;
+	}
+
+
+	public void setCtrlRobots(ControleRobots ctrlRobots) {
+		this.ctrlRobots = ctrlRobots;
+	}
+
+	public String getSelectedRobot() {
+		return lv_robots.getSelectionModel().getSelectedItem().split(" ")[0];
+	}
 	
 	public void addRobotsToLV(ArrayList<Robot> robots) {
 		ArrayList<String> robsString = new ArrayList<String>();
@@ -51,45 +91,96 @@ public class Model {
 		lv_robots.setItems(items);
 	}
 	
-	public Model(){
-		System.out.println("debut window");
 
-//		this.gridField.add(image, 1, 0);
-//		this.gridField.add(image, 2, 0);
-//		this.gridField.add(image, 3, 0);
+	public void deleteRobot(int posX, int posY) throws FileNotFoundException{
+//		Node cellToDelete = getChild(posX,posY);
+		String filePath = "src/view/pictures/empty.png";
+		FileInputStream imageStream = new FileInputStream(filePath);
+		ImageView image = new ImageView(new Image(imageStream));
+		image.setFitWidth(62);
+		image.setFitHeight(58);
+		gridField.add(image, posX, posY);
 	}
 	
+	public void moveRobot(String direction) {
+		Robot rob = field.getRobotById(Integer.parseInt(getSelectedRobot()));
+		try {
+			deleteRobot(rob.getPosX(), rob.getPosY());			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		ctrlRobots.addMoveListener(rob);
+		ctrlRobots.generateMoveEvents(direction);
+		ctrlRobots.removeMoveListener(rob);
+		displayAllRobots(field.getRobotsList());
+		addRobotsToLV(field.getRobotsList());
+
+	}
+
+	public Node getChild(Integer posX, Integer posY) {
+		for (Node node : gridField.getChildren()) {
+	        if (GridPane.getColumnIndex(node) == posX && GridPane.getRowIndex(node) == posY) {
+	        	return node;
+	        }
+	    }
+		return null;
+	}
 	
-	public GridPane getGridField() {
-		return gridField;
-	}
-
-	public ListView getListView() {
-		return lv_robots;
-	}
-
 	public void onClickBtnUp() {
-		System.out.println("up");
+		moveRobot("haut");
 	}
 	
 	public void onClickBtnRight() {
-		System.out.println("right");
+		moveRobot("droite");
 	}
 	
 	public void onClickBtnDown() {
-		System.out.println("down");
+		moveRobot("bas");
 	}
 	
 	public void onClickBtnLeft() {
-		System.out.println("left");
+		moveRobot("gauche");
 	}
 	
 	public void onClickBtnAction() {
-		System.out.println("heal or attack");
+		getSelectedRobot();
 	}
 	
-	public String getUp() {
-		return btn_up.getText();
+	public Button getUp() {
+		return btn_up;
 	}
+	
+	public SplitPane getSp() {
+		return sp;
+	}
+	
+	public void displayAllRobots(ArrayList<Robot> Robots) {
+		for (Robot robot : Robots) {
+			try {
+				displayNewRobot(robot.getClass().toString().substring(28).toLowerCase(),
+						robot.getFlotte().getName(), 
+						robot.getPosX(), 
+						robot.getPosY());
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+
+	public void displayNewRobot(String typeRobot, String nomFlotte, int posX, int posY) throws FileNotFoundException {
+		String color;
+		if(nomFlotte=="A")
+			color = "blue";
+		else
+			color = "red";
+		String filePath = "src/view/pictures/"+typeRobot+"_"+color+".png";
+		FileInputStream imageStream = new FileInputStream(filePath);
+		ImageView image = new ImageView(new Image(imageStream));
+		image.setFitWidth(62);
+		image.setFitHeight(58);
+		gridField.add(image, posX, posY);
+	}
+	
+	
 	
 }
