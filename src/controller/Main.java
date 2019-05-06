@@ -39,6 +39,7 @@ public class Main extends Application  {
 			this.frame = loader.getController();
 			Scene scene = primaryStage.getScene();
 			SplitPane sp = (SplitPane)scene.lookup("sp");                        
+
 			displayNewRobot("heal","A",5,0);
 			mainField.getRobotsList();
 			frame.addRobotsToLV(mainField.getRobotsList());
@@ -53,8 +54,6 @@ public class Main extends Application  {
 		}
 	}
 
-
-
 	public void displayNewRobot(String typeRobot, String nomFlotte, int posX, int posY) throws FileNotFoundException {
 		String color;
 		if(nomFlotte=="A")
@@ -68,7 +67,6 @@ public class Main extends Application  {
 		image.setFitWidth(62);
 		image.setFitHeight(58);
 		grid.add(image, posX, posY);
-
 	}
 
 
