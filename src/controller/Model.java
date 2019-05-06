@@ -2,12 +2,23 @@ package controller;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import robots.Structure.Robot;
 
 public class Model {
 	@FXML
@@ -25,6 +36,22 @@ public class Model {
 	@FXML
 	private GridPane gridField;
 	
+	@FXML
+	private ListView<String> lv_robots;
+	
+	public void addRobotsToLV(ArrayList<Robot> robots) {
+		ArrayList<String> robsString = new ArrayList<String>();
+		for (Robot robot : robots) {
+			String classe = robot.getClass().toString().substring(28);
+			
+			robsString.add(robot.getIdRobot() + " " + classe + " " + robot.getLifePoints());
+		}
+		ObservableList<String> items =FXCollections.observableArrayList(robsString);
+		lv_robots.setItems(items);
+//		ObservableList<Robot> items = FXCollections.observableList(robots);
+//		lv_robots.setItems(items);
+	}
+	
 	public Model(){
 		System.out.println("debut window");
 
@@ -39,7 +66,9 @@ public class Model {
 		return gridField;
 	}
 
-
+	public ListView getListView() {
+		return lv_robots;
+	}
 
 	public void onClickBtnUp() {
 		System.out.println("up");
