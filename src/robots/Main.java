@@ -1,5 +1,6 @@
 package robots;
 
+import controller.*;
 import robots.Structure.Field;
 import robots.Structure.Robot;
 
@@ -27,17 +28,17 @@ public class Main {
 		
 		System.out.println("----------------------------");
 		source.addMoveListener(mainField.getRobotById(5)); // seul le robot 5 (un robot rapide) se déplace (au début en 7,0)
-		source.generateMoveEvents("haut");//7,3
-		source.generateMoveEvents("haut");//7,6
-		source.generateMoveEvents("haut");//7,9 (touche le robot 1 : lui enlève 2 PV)
-		source.generateMoveEvents("gauche");//7,9 encore (touche le robot 1 : lui enlève 2 PV)
+		source.generateMoveEvents("bas");//7,3
 		source.generateMoveEvents("bas");//7,6
+		source.generateMoveEvents("bas");//7,9 (touche le robot 1 : lui enlève 2 PV)
+		source.generateMoveEvents("gauche");//7,9 encore (touche le robot 1 : lui enlève 2 PV)
+		source.generateMoveEvents("haut");//7,6
 		source.generateMoveEvents("gauche");//4,6
-		source.generateMoveEvents("haut");//4,8 (touche le robot 3 : lui enlève 2 PV)
+		source.generateMoveEvents("bas");//4,8 (touche le robot 3 : lui enlève 2 PV)
 		source.removeMoveListener(mainField.getRobotById(5));// le robot 5 n'est plus MoveListener
 		source.addMoveListener(mainField.getRobotById(3));//le robot 3 (soigneur) devient MoveListener
 		source.generateMoveEvents("droite");//5,9 : se colle au robot 1 et le soigne de 3 PV
-		source.generateMoveEvents("haut");//5,9 encore : soigne le robot 1 de 3 PV
+		source.generateMoveEvents("bas");//5,9 encore : soigne le robot 1 de 3 PV
 		
 
 		

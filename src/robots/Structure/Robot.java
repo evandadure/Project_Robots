@@ -108,9 +108,9 @@ public abstract class Robot implements MoveListener, AllyListener,EnnemyListener
 			if(e.getDirection() == "gauche")
 				this.move(f,posX-1, posY);
 			if(e.getDirection() == "haut")
-				this.move(f,posX, posY+1);
-			if(e.getDirection() == "bas")
 				this.move(f,posX, posY-1);
+			if(e.getDirection() == "bas")
+				this.move(f,posX, posY+1);
 		}
 		// mets à jour la liste des écouteurs alliés et ennemis, à partir de la nouvelle position du robot courant.
 		ControleRobots myController = (ControleRobots)e.getSource();
