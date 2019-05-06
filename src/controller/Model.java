@@ -27,10 +27,6 @@ public class Model {
 	
 	public Model(){
 		System.out.println("debut window");
-
-//		this.gridField.add(image, 1, 0);
-//		this.gridField.add(image, 2, 0);
-//		this.gridField.add(image, 3, 0);
 	}
 	
 
