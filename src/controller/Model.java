@@ -39,17 +39,16 @@ public class Model {
 	@FXML
 	private ListView<String> lv_robots;
 	
+	private String idRobot;
+	
 	public void addRobotsToLV(ArrayList<Robot> robots) {
 		ArrayList<String> robsString = new ArrayList<String>();
 		for (Robot robot : robots) {
 			String classe = robot.getClass().toString().substring(28);
-			
 			robsString.add(robot.getIdRobot() + " " + classe + " " + robot.getLifePoints());
 		}
 		ObservableList<String> items =FXCollections.observableArrayList(robsString);
 		lv_robots.setItems(items);
-//		ObservableList<Robot> items = FXCollections.observableList(robots);
-//		lv_robots.setItems(items);
 	}
 	
 	public Model(){
@@ -60,7 +59,6 @@ public class Model {
 //		this.gridField.add(image, 3, 0);
 	}
 	
-
 	
 	public GridPane getGridField() {
 		return gridField;

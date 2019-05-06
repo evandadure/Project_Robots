@@ -30,7 +30,6 @@ public class Main extends Application  {
 			ControleRobots source = new ControleRobots(new Field(10,10));
 			Field mainField = source.getCurrentField();
 
-
 			loader.setLocation(getClass().getResource("../view/PersonOverview2.fxml"));
 
 			AnchorPane root = (AnchorPane) loader.load();
@@ -39,17 +38,30 @@ public class Main extends Application  {
 			this.frame = loader.getController();
 			Scene scene = primaryStage.getScene();
 			SplitPane sp = (SplitPane)scene.lookup("sp");			
-			displayNewRobot("heal","A",5,0);
-			mainField.getRobotsList();
-			frame.addRobotsToLV(mainField.getRobotsList());
+			ArrayList<Robot> robots = mainField.getRobotsList();
+			frame.addRobotsToLV(robots);
+			displayAllRobots(robots);
 
 
 
 			primaryStage.show();
 
 		} catch (Exception e) {
-			System.out.println("ATTENTION DERRIERE TOI C EST AFFREUX " + e);
+			System.out.println("An error was raised, look ! " + e);
 			// TODO: handle exception
+		}
+	}
+	
+	public void displayAllRobots(ArrayList<Robot> Robots) {
+		for (Robot robot : Robots) {
+			try {
+				displayNewRobot(robot.getClass().toString().substring(28).toLowerCase(),
+						robot.getFlotte().getName(), 
+						robot.getPosX(), 
+						robot.getPosY());
+			} catch (Exception e) {
+				System.out.println(e);
+			}
 		}
 	}
 

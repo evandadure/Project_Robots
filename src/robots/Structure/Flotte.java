@@ -9,6 +9,10 @@ public class Flotte {
 	public Flotte(String name) {
 		this.name = name;
 	}
+	
+	public String getName() {
+		return this.name;
+	}
 
 	public ArrayList<Robot> getRobotsList() {
 		return robotsList;
