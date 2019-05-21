@@ -6,6 +6,4 @@ public class RobotLent extends Robot {
 		super(idRobot,posX, posY,1,3,7,4);
 		// TODO Auto-generated constructor stub
 	}
-
-	
 }
