@@ -116,7 +116,7 @@ public abstract class Robot implements MoveListener, AllyListener,EnnemyListener
 		ControleRobots myController = (ControleRobots)e.getSource();
 		ArrayList<AllyListener> newAllyList = new ArrayList<AllyListener>();
 		ArrayList<EnnemyListener> newEnnemyList = new ArrayList<EnnemyListener>();
-		// vérifie pour chaque robot proche s'il est de la meme flotte ou pas
+		// vérifie pour chaque robot proche s'il est de la meme flotte ou pas, et remplit en conséquence la liste d'alliés et d'ennemis
 		for(Robot r:f.getCloseRobots(this)) {
 			if(r.getFlotte()==this.flotte)
 				newAllyList.add(r);
@@ -135,7 +135,7 @@ public abstract class Robot implements MoveListener, AllyListener,EnnemyListener
 	}
 
 	public void onHealEvent(HealEvent e) {
-		// reprends de la vie, jusqu'à son nombre max de lifePoints
+		// reprends de la vie, dépendant de la puissance du soin, jusqu'à son nombre max de lifePoints
 		this.lifePoints+=e.getHeal();
 		if(this.lifePoints>this.maxLifePoints)
 			this.lifePoints = this.maxLifePoints;

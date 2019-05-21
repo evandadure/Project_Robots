@@ -78,10 +78,12 @@ public class Model {
 	}
 
 	public String getSelectedRobot() {
+		// Permet de retourner l'id du robot sélectionné dans la listView
 		return lv_robots.getSelectionModel().getSelectedItem().split(" ")[0];
 	}
 	
 	public void addRobotsToLV(ArrayList<Robot> robots) {
+		// Ajoute des robots dans la listView de l'applciation
 		ArrayList<String> robsString = new ArrayList<String>();
 		for (Robot robot : robots) {
 			String classe = robot.getClass().toString().substring(28);
@@ -93,7 +95,7 @@ public class Model {
 	
 
 	public void deleteRobot(int posX, int posY) throws FileNotFoundException{
-//		Node cellToDelete = getChild(posX,posY);
+		// Cette méthode permet de "supprimer" un robot de l'écran en recouvrant sa case par une image grise.
 		String filePath = "src/view/pictures/empty.png";
 		FileInputStream imageStream = new FileInputStream(filePath);
 		ImageView image = new ImageView(new Image(imageStream));
@@ -103,29 +105,25 @@ public class Model {
 	}
 	
 	public void moveRobot(String direction) {
+		// On récupère le robot actuellement sélectionné
 		Robot rob = field.getRobotById(Integer.parseInt(getSelectedRobot()));
+		// On supprime le "robot" (uniquement sa présence à l'écran)
 		try {
 			deleteRobot(rob.getPosX(), rob.getPosY());			
 		} catch (Exception e) {
 			System.out.println(e);
 		}
+		// Changement de la position du robot en fonction de la direction
 		ctrlRobots.addMoveListener(rob);
 		ctrlRobots.generateMoveEvents(direction);
 		ctrlRobots.removeMoveListener(rob);
+		// Réaffichage de tous les robots (et donc de la nouvelle position du robot)
 		displayAllRobots(field.getRobotsList());
+		// Refresh de la listView
 		addRobotsToLV(field.getRobotsList());
 
 	}
-
-	public Node getChild(Integer posX, Integer posY) {
-		for (Node node : gridField.getChildren()) {
-	        if (GridPane.getColumnIndex(node) == posX && GridPane.getRowIndex(node) == posY) {
-	        	return node;
-	        }
-	    }
-		return null;
-	}
-	
+// ACTION DES BOUTONS DE DEPLACEMENT
 	public void onClickBtnUp() {
 		moveRobot("haut");
 	}
@@ -142,10 +140,6 @@ public class Model {
 		moveRobot("gauche");
 	}
 	
-	public void onClickBtnAction() {
-		getSelectedRobot();
-	}
-	
 	public Button getUp() {
 		return btn_up;
 	}
@@ -155,6 +149,7 @@ public class Model {
 	}
 	
 	public void displayAllRobots(ArrayList<Robot> Robots) {
+		//Affiche tous les robots d'une liste de Robots
 		for (Robot robot : Robots) {
 			try {
 				displayNewRobot(robot.getClass().toString().substring(28).toLowerCase(),
@@ -168,6 +163,8 @@ public class Model {
 	}
 
 	public void displayNewRobot(String typeRobot, String nomFlotte, int posX, int posY) throws FileNotFoundException {
+		// ajoute graphiquement un robot en fonction de sa flotte (A = bleu, B = rouge) et de son type
+		// (chaque type de robot à sa propre illustration)
 		String color;
 		if(nomFlotte=="A")
 			color = "blue";

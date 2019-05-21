@@ -17,12 +17,24 @@ public class Field {
 		this.nbLig = nbLig;
 		this.flotteA = new Flotte("A");
 		this.flotteB = new Flotte("B");
+		// Les constructeurs des robots sont composés d'un id, d'un posX et d'un posY
 		this.addRobot(flotteA,new RobotLent(1,6,9));
 		this.addRobot(flotteA,new RobotRapide(2,2,9));
 		this.addRobot(flotteA,new RobotHealer(3,4,9));
 		this.addRobot(flotteB,new RobotLent(4,3,0));
 		this.addRobot(flotteB,new RobotRapide(5,7,0));
 		this.addRobot(flotteB,new RobotHealer(6,5,0));
+		
+		// ==========CARACTERISTIQUES DES ROBOTS==========
+		//Robot Rapide : Vie 4, Portée 1, Dégats 2, Mouvements 3, Portée 1
+		//Robot Lent : Vie 7, Portée 3, Dégats 4, Mouvements 1, Portée 3
+		//Robot Healer : Vie 5, Portée 2, Heal 3, Mouvements 2, Portée 2
+		
+		
+		// ==========COMPOSITION DU TERRAIN AU DEBUT==========
+		//Le terrain fait 10x10 et les 0 sont en bas à gauche (cases numérotées de 0 à 9)
+		//Flotte A : Rapide id2 (2,9) / Lent id1 (6,9) / Healer id3 (4,9)
+		//Flotte B : Rapide id5 (7,0) / Lent id4 (3,0) / Healer id6 (5,0)
 	}
 
 	public ArrayList<Robot> getRobotsList() {
@@ -38,6 +50,7 @@ public class Field {
 	}
 	
 	public Robot getRobotById(int id) {
+		// récupère un robot à partir de son ID
 		for(Robot r:this.robotsList) {
 			if(r.getIdRobot() == id)
 				return r;
@@ -46,6 +59,7 @@ public class Field {
 	}
 	
 	public Robot getRobotByPos(int posX, int posY) {
+		// récupère un robot à partir de ses positions en X et Y (un seul robot peut être présent à une position donnée)
 		for(Robot r:this.robotsList) {
 			if(r.getPosX() == posY && r.getPosY() == posY)
 				return r;
@@ -63,10 +77,12 @@ public class Field {
 	}
 	
 	public boolean isInField(int posX,int posY) {
+		// checks if a given position belongs to the field
 		return posX>=0 && posX<this.nbCol && posY>=0 && posY<nbLig;
 	}
 	
 	public ArrayList<Robot>getCloseRobots(Robot currentRobot) {
+		// Retourne tous les robots dans la portée du robot en paramètre
 		ArrayList<Robot> listCloseRobots = new ArrayList<Robot>();
 		for(Robot r:this.robotsList) {
 			// check if each robot is close enough to the currentRobot
